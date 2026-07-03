@@ -600,7 +600,7 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
               <h1 className="font-avenir text-3xl md:text-4xl font-semibold tracking-tight text-[#1c1b1b] leading-tight">
                 {product.name.replace(/\s+(Moisturi[sz]ing)\s+Gel\s+Bar$/i, '')}
               </h1>
-              <p className="font-avenir text-[18px] md:text-[20px] text-neutral-500 font-semibold italic mt-2">
+              <p className="font-avenir text-[16px] md:text-[18px] text-neutral-500 font-semibold italic mt-2">
                 {product.subtitle}
               </p>
             </div>
