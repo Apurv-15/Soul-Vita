@@ -56,7 +56,7 @@ export default function BrandIntro({ hidePillars = false }: BrandIntroProps) {
           {/* Left Column: Typographic Hook and Brand Philosophy Editorial */}
           <motion.div 
             variants={itemVariants} 
-            className={`${hidePillars ? 'lg:col-span-12 w-full' : 'lg:col-span-6'} flex flex-col space-y-5 text-left`}
+            className={`${hidePillars ? 'lg:col-span-12 w-full' : 'lg:col-span-6 max-w-xl lg:max-w-[540px]'} flex flex-col space-y-5 text-left`}
           >
             {/* Header Block */}
             <div className="space-y-2">
@@ -91,7 +91,7 @@ export default function BrandIntro({ hidePillars = false }: BrandIntroProps) {
            {!hidePillars && (
              <motion.div 
                variants={itemVariants} 
-               className="lg:col-span-6 flex flex-col space-y-4 lg:ml-auto w-full self-center"
+               className="lg:col-span-6 flex flex-col space-y-4 w-full max-w-xl lg:max-w-[540px] self-center"
              >
                 {/* Pillar 1: Botanicals */}
                 <div className="bg-[#F5F2EB] border border-[#E5DEC1]/60 rounded-[24px] p-4 md:p-5 shadow-xs hover:shadow-md hover:border-[#2D3A2F]/30 transition-all duration-300 flex flex-col space-y-2 text-left">
