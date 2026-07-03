@@ -158,7 +158,7 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
       
       {/* Intro Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-        <h1 className="font-serif text-[42px] sm:text-[54px] md:text-[62px] font-normal leading-tight text-neutral-900 tracking-tight">
+        <h1 className="font-display text-[42px] sm:text-[54px] md:text-[62px] font-normal leading-tight text-neutral-900 tracking-tight">
           Get in Touch
         </h1>
         <p className="font-sans text-[14.5px] text-neutral-700 font-light leading-normal select-text">
@@ -211,7 +211,7 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
                   {activeTab === 'trade' && (
                     <form onSubmit={handleTradeSubmit} className="space-y-4 text-left">
                       <div className="mb-2">
-                        <h3 className="font-serif text-lg font-normal text-neutral-800">General Trade Contact</h3>
+                        <h3 className="font-display text-lg font-normal text-neutral-800">General Trade Contact</h3>
                         <p className="font-sans text-xs text-neutral-400 font-light mt-1">
                           For distributors, retailers, importers and wholesalers who wish to contact us about Soul Viva for stocking.
                         </p>
@@ -392,7 +392,7 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
                   {activeTab === 'sample' && (
                     <form onSubmit={handleSampleSubmit} className="space-y-4 text-left">
                       <div className="mb-2">
-                        <h3 className="font-serif text-lg font-normal text-neutral-800">Request Product Samples</h3>
+                        <h3 className="font-display text-lg font-normal text-neutral-800">Request Product Samples</h3>
                         <p className="font-sans text-xs text-neutral-400 font-light mt-1">
                           We're happy to send samples to qualified trade buyers. Please complete the form below and we'll dispatch your sample pack within 5–7 business days. Shipping charges may apply for international orders.
                         </p>
@@ -713,7 +713,7 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
           <div className="space-y-8 relative z-10 text-left">
             <div className="space-y-2">
               <span className="font-mono text-[9px] uppercase tracking-widest text-[#2D3A2F]/80 font-bold">Quick Channels</span>
-              <h3 className="font-serif text-2xl md:text-3xl font-normal leading-tight text-[#2D3A2F]">Contact Details</h3>
+              <h3 className="font-display text-2xl md:text-3xl font-normal leading-tight text-[#2D3A2F]">Contact Details</h3>
             </div>
 
             <div className="space-y-6">
