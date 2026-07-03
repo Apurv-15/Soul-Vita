@@ -598,7 +598,10 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
             {/* Category / Subtitle */}
             <div className="space-y-2">
               <h1 className="font-avenir text-3xl md:text-4xl font-semibold tracking-tight text-[#1c1b1b] leading-tight">
-                {product.name.replace(/\s+(Moisturi[sz]ing)\s+Gel\s+Bar$/i, '')}
+                {(() => {
+                  const m = product.name.match(/^(.*?)\s+(Moisturi[sz]ing Gel Bar)$/);
+                  return m ? <>{m[1]}<br />{m[2]}</> : product.name;
+                })()}
               </h1>
               <p className="font-avenir text-[16px] md:text-[18px] text-neutral-500 font-semibold italic mt-2">
                 {product.subtitle}
