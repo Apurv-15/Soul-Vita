@@ -229,8 +229,8 @@ export default function AdminDashboard({ onBackToHome }: AdminDashboardProps) {
           <span className="font-sans text-[10px] tracking-[0.3em] text-[#2d5a56] font-bold uppercase block">
             B2B OPERATIONAL PORTAL
           </span>
-          <h1 className="font-serif text-[42px] font-normal leading-none text-neutral-900 tracking-tight">
-            Inquiry <span className="italic font-serif text-[#2D5A56]">Dashboard</span>
+          <h1 className="font-display text-[42px] font-normal leading-none text-neutral-900 tracking-tight">
+            Inquiry Dashboard
           </h1>
           <p className="font-sans text-xs md:text-sm text-neutral-500 font-light max-w-xl leading-relaxed select-text">
             Admin console for evaluating general trade enquiries, tracking logistics requests, and managing product sample dispatch logs.
@@ -274,7 +274,7 @@ export default function AdminDashboard({ onBackToHome }: AdminDashboardProps) {
         <div className="bg-white rounded-3xl p-6 border border-[#E5DEC1]/60 shadow-xs flex flex-col justify-between text-left space-y-4">
           <div>
             <span className="text-[10px] tracking-widest font-bold uppercase text-neutral-400 block">Total Enquiries</span>
-            <span className="font-serif text-3xl md:text-4xl font-normal text-neutral-800 block mt-2">{totalCount}</span>
+            <span className="font-display text-3xl md:text-4xl font-normal text-neutral-800 block mt-2">{totalCount}</span>
           </div>
           <div className="text-[10px] text-neutral-500 font-light pt-2 border-t border-stone-100 flex justify-between">
             <span>Trade: <strong>{tradeCount}</strong></span>
@@ -286,7 +286,7 @@ export default function AdminDashboard({ onBackToHome }: AdminDashboardProps) {
         <div className="bg-white rounded-3xl p-6 border border-[#E5DEC1]/60 shadow-xs flex flex-col justify-between text-left space-y-4">
           <div>
             <span className="text-[10px] tracking-widest font-bold uppercase text-neutral-400 block">Pending Review</span>
-            <span className="font-serif text-3xl md:text-4xl font-normal text-amber-600 block mt-2">{pendingCount}</span>
+            <span className="font-display text-3xl md:text-4xl font-normal text-amber-600 block mt-2">{pendingCount}</span>
           </div>
           <div className="text-[10px] text-neutral-500 font-light pt-2 border-t border-stone-100 flex items-center gap-1.5">
             <Clock className="w-3 h-3 text-amber-500" />
@@ -298,7 +298,7 @@ export default function AdminDashboard({ onBackToHome }: AdminDashboardProps) {
         <div className="bg-white rounded-3xl p-6 border border-[#E5DEC1]/60 shadow-xs flex flex-col justify-between text-left space-y-4">
           <div>
             <span className="text-[10px] tracking-widest font-bold uppercase text-neutral-400 block">Reviewed Trade</span>
-            <span className="font-serif text-3xl md:text-4xl font-normal text-teal-600 block mt-2">{reviewedCount}</span>
+            <span className="font-display text-3xl md:text-4xl font-normal text-teal-600 block mt-2">{reviewedCount}</span>
           </div>
           <div className="text-[10px] text-neutral-500 font-light pt-2 border-t border-stone-100 flex items-center gap-1.5">
             <CheckCircle className="w-3 h-3 text-teal-500" />
@@ -310,7 +310,7 @@ export default function AdminDashboard({ onBackToHome }: AdminDashboardProps) {
         <div className="bg-white rounded-3xl p-6 border border-[#E5DEC1]/60 shadow-xs flex flex-col justify-between text-left space-y-4">
           <div>
             <span className="text-[10px] tracking-widest font-bold uppercase text-neutral-400 block">Samples Dispatched</span>
-            <span className="font-serif text-3xl md:text-4xl font-normal text-emerald-700 block mt-2">{dispatchedCount}</span>
+            <span className="font-display text-3xl md:text-4xl font-normal text-emerald-700 block mt-2">{dispatchedCount}</span>
           </div>
           <div className="text-[10px] text-neutral-500 font-light pt-2 border-t border-stone-100 flex items-center gap-1.5">
             <Truck className="w-3 h-3 text-emerald-600" />
