@@ -17,7 +17,6 @@ const dropletPattern = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/20
 
 interface ProductTheme {
   topBanner: string;
-  bottomBanner: string;
   ean: string;
   textColor: string;
   subtextColor: string;
@@ -26,42 +25,36 @@ interface ProductTheme {
 const PRODUCT_THEMES: Record<string, ProductTheme> = {
   'sea-minerals-menthol': {
     topBanner: '/Images/Sea_mineral_kv.jpeg',
-    bottomBanner: '/Sea Minerals/bottom_banner.png',
     ean: '8908030764058',
     textColor: 'text-sky-900',
     subtextColor: 'text-sky-700',
   },
   'waterlily-pear': {
     topBanner: '/Images/Waterlily_kv.jpeg',
-    bottomBanner: '/Waterlily and Pear/bottom_banner.png',
     ean: '8908030764003',
     textColor: 'text-emerald-950',
     subtextColor: 'text-emerald-800',
   },
   'cherry-blossom-strawberry': {
     topBanner: '/Images/Cherry_blossom.jpeg',
-    bottomBanner: '/Strawberry/bottom_banner.png',
     ean: '8908030764034',
     textColor: 'text-rose-955',
     subtextColor: 'text-rose-800',
   },
   'lavender-currant': {
     topBanner: '/Images/Black_current_kv.jpeg',
-    bottomBanner: '/Black Currant/bottom_banner.png',
     ean: '8908030764041',
     textColor: 'text-purple-900',
     subtextColor: 'text-purple-700',
   },
   'mandarin-peach': {
     topBanner: '/Images/Manadrin.png',
-    bottomBanner: '/Mandarin/bottom_banner.png',
     ean: '8908030764027',
     textColor: 'text-orange-950',
     subtextColor: 'text-orange-800',
   },
   'shea-honey': {
     topBanner: '/Images/Shea_butter.jpeg',
-    bottomBanner: '/Shea and butter/bottom_banner.png',
     ean: '8908030764010',
     textColor: 'text-amber-950',
     subtextColor: 'text-amber-800',
@@ -176,7 +169,6 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
   
   const theme = PRODUCT_THEMES[product.id] || {
     topBanner: '/Hero_page/base.jpeg',
-    bottomBanner: '/Sea Minerals/bottom_banner.png',
     ean: '8908030764010',
     textColor: 'text-neutral-900',
     subtextColor: 'text-neutral-600',
@@ -605,13 +597,10 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
             
             {/* Category / Subtitle */}
             <div className="space-y-2">
-              <h1 className="font-sans text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 leading-tight">
-                {(() => {
-                  const m = product.name.match(/^(.*?)\s+(Moisturi[sz]ing Gel Bar)$/);
-                  return m ? <>{m[1]}<br />{m[2]}</> : product.name;
-                })()}
+              <h1 className="font-avenir text-3xl md:text-4xl font-semibold tracking-tight text-[#1c1b1b] leading-tight">
+                {product.name.replace(/\s+(Moisturi[sz]ing)\s+Gel\s+Bar$/i, '')}
               </h1>
-              <p className="font-sans text-[18px] md:text-[20px] text-neutral-500 font-semibold italic mt-2">
+              <p className="font-avenir text-[18px] md:text-[20px] text-neutral-500 font-semibold italic mt-2">
                 {product.subtitle}
               </p>
             </div>

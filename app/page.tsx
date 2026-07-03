@@ -214,14 +214,14 @@ export default function App() {
         '/Factory images/Factory Image 2.jpg',
       ].forEach(cacheImage);
 
-      // Product detail key visuals & bottom banners
+      // Product detail key visuals
       [
-        '/Images/Sea_mineral_kv.jpeg', '/Sea Minerals/bottom_banner.png',
-        '/Images/Waterlily_kv.jpeg', '/Waterlily and Pear/bottom_banner.png',
-        '/Images/Cherry_blossom.jpeg', '/Strawberry/bottom_banner.png',
-        '/Images/Black_current_kv.jpeg', '/Black Currant/bottom_banner.png',
-        '/Images/Manadrin.png', '/Mandarin/bottom_banner.png',
-        '/Images/Shea_butter.jpeg', '/Shea and butter/bottom_banner.png',
+        '/Images/Sea_mineral_kv.jpeg',
+        '/Images/Waterlily_kv.jpeg',
+        '/Images/Cherry_blossom.jpeg',
+        '/Images/Black_current_kv.jpeg',
+        '/Images/Manadrin.png',
+        '/Images/Shea_butter.jpeg',
       ].forEach(cacheImage);
 
       // Product gallery images
