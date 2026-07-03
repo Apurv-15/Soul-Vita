@@ -220,7 +220,7 @@ export default function App() {
         '/Images/Waterlily_kv.jpeg',
         '/Images/Cherry_blossom.jpeg',
         '/Images/Black_current_kv.jpeg',
-        '/Images/Manadrin.png',
+        '/Images/Manadrin.jpg',
         '/Images/Shea_butter.jpeg',
       ].forEach(cacheImage);
 

@@ -48,7 +48,7 @@ const PRODUCT_THEMES: Record<string, ProductTheme> = {
     subtextColor: 'text-purple-700',
   },
   'mandarin-peach': {
-    topBanner: '/Images/Manadrin.png',
+    topBanner: '/Images/Manadrin.jpg',
     ean: '8908030764027',
     textColor: 'text-orange-950',
     subtextColor: 'text-orange-800',

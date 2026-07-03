@@ -17,10 +17,10 @@ export const PRODUCTS: Product[] = [
     themeColor: '#FFE5D9',
     badge: 'Citrus Energy',
     image: '/Mandarin/Soul Viva - Mandarin & Peach - Product 2.png',
-    bgImage: '/Images/Manadrin.png',
+    bgImage: '/Images/Manadrin.jpg',
     video: '/Video/Mandarin_video.mp4',
     images: [
-      '/Images/Manadrin.png',
+      '/Images/Manadrin.jpg',
       '/Mandarin/Soul Viva - Mandarin & Peach - Front 1.png',
       '/Mandarin/Soul Viva - Mandarin & Peach - Left 1.png',
       '/Ingredient Story/Ingredient Story - Orange - 1.png',
