@@ -150,13 +150,13 @@ export default function CosmeticBox3D() {
             {/* Left Texts */}
             <div className="space-y-3 flex flex-col justify-end h-full">
               <div className="space-y-0.5">
-                <h3 className="font-serif italic text-2xl md:text-3xl text-[#1a3834] leading-tight font-light tracking-wide">
+                <h3 className="font-serif text-2xl md:text-3xl text-[#1a3834] leading-tight font-light tracking-wide">
                   Waterlily
                 </h3>
-                <span className="font-serif italic text-lg text-[#2d5a56]/70 leading-none block pl-3">
+                <span className="font-serif text-lg text-[#2d5a56]/70 leading-none block pl-3">
                   &amp;
                 </span>
-                <h3 className="font-serif italic text-2xl md:text-3xl text-[#1a3834] leading-tight font-light tracking-wide pl-4">
+                <h3 className="font-serif text-2xl md:text-3xl text-[#1a3834] leading-tight font-light tracking-wide pl-4">
                   Pear
                 </h3>
               </div>

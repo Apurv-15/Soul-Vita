@@ -72,7 +72,7 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
         <h3 className="font-avenir text-[15px] sm:text-[16px] font-semibold text-[#1c1b1b] tracking-tight leading-tight group-hover:text-black">
           {product.name.replace(/\s+(Moisturizing|Moisturising)\s+Gel\s+Bar$/i, '')}
         </h3>
-        <span className="font-avenir text-[13px] text-neutral-500 block font-semibold leading-tight italic">
+        <span className="font-avenir text-[13px] text-neutral-500 block font-semibold leading-tight">
           {product.subtitle}
         </span>
         <span className="font-avenir text-xs text-neutral-700 font-medium block leading-tight mt-0.5">

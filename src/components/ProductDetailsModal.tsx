@@ -603,7 +603,7 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
                   return m ? <>{m[1]}<br />{m[2]}</> : product.name;
                 })()}
               </h1>
-              <p className="font-avenir text-[16px] md:text-[18px] text-neutral-500 font-semibold italic mt-2">
+              <p className="font-avenir text-[16px] md:text-[18px] text-neutral-500 font-semibold mt-2">
                 {product.subtitle}
               </p>
             </div>
@@ -696,7 +696,7 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
                   </h3>
                   <p className="font-sans text-[15px] text-neutral-700 font-light leading-[1.6] bg-[#FAF9F5] border border-neutral-200 rounded-xl p-5">
                     {product.inciIngredients}
-                    <span className="block mt-3 text-xs text-neutral-450 italic leading-relaxed">
+                    <span className="block mt-3 text-xs text-neutral-450 leading-relaxed">
                       Ingredients listed in descending order of concentration per INCI convention. Full safety data sheet and certificate of analysis available to qualified trade buyers on request.
                     </span>
                   </p>
