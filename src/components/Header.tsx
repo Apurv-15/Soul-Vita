@@ -148,9 +148,6 @@ export default function Header({
       {mobileMenuOpen && (
         <div className="md:hidden absolute top-20 left-0 right-0 bg-[#F5F2EB]/95 backdrop-blur-xl border-t border-[#E5DEC1]/75 flex flex-col py-6 px-6 z-50 shadow-xl">
           <div className="flex flex-col gap-4">
-            <span className="text-[10px] tracking-widest font-semibold uppercase text-neutral-500 mb-2 border-b border-black/10 pb-1">
-              Sanctuary Menu
-            </span>
             {navItems.map((item) => (
               <button
                 key={item.id}

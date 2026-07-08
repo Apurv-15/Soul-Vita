@@ -166,6 +166,7 @@ interface ProductDetailsModalProps {
 export default function ProductDetailsModal({ product, onClose, onProductSelect, onInquire, setScreen, onTriggerCinematicIntro }: ProductDetailsModalProps) {
   const [activeImageIndex, setActiveImageIndex] = useState<number>(0);
   const [isFavorited, setIsFavorited] = useState<boolean>(false);
+  const [isMediaLoading, setIsMediaLoading] = useState<boolean>(true);
   
   const theme = PRODUCT_THEMES[product.id] || {
     topBanner: '/Hero_page/base.jpeg',
@@ -181,6 +182,7 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
   // Scroll to top and reset states when product changes
   useEffect(() => {
     setActiveImageIndex(0);
+    setIsMediaLoading(true);
     
     // Reset autoScrollHasRunRef so auto-scroll works for new product
     autoScrollHasRunRef.current = false;
@@ -193,6 +195,11 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
       window.scrollTo(0, 0);
     }
   }, [product]);
+
+  // Set media loading state to true when the active image index changes
+  useEffect(() => {
+    setIsMediaLoading(true);
+  }, [activeImageIndex]);
 
   // Auto-scroll to details grid after 3.5 seconds, but cancel if user scrolls manually first
   const autoScrollHasRunRef = useRef<boolean>(false);
@@ -485,9 +492,17 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
           <div id="left-sticky-wrapper" className="lg:col-span-7 order-1 lg:order-1 w-full self-stretch">
             <div id="left-sticky-column" className="flex flex-col gap-5 w-full lg:h-auto relative">
               
-              <div className="w-full">
-                <div data-lag="0.5" className="relative w-full overflow-hidden transition-all duration-300 aspect-[4/3] md:aspect-[16/10]">
+                <div data-lag="0.5" className="relative w-full overflow-hidden transition-all duration-300 aspect-[4/3] md:aspect-[16/10] bg-neutral-100 rounded-2xl">
                   
+                  {isMediaLoading && (
+                    <div className="absolute inset-0 bg-[#FAF9F5] flex items-center justify-center z-20">
+                      <div className="w-full h-full bg-stone-100/80 animate-pulse flex flex-col items-center justify-center gap-3">
+                        <div className="w-10 h-10 rounded-full border-[3px] border-stone-200/60 border-t-[#2D3A2F] animate-spin" />
+                        <span className="text-[10px] tracking-[0.2em] uppercase text-[#2D3A2F]/40 font-sans font-semibold">Loading Visual...</span>
+                      </div>
+                    </div>
+                  )}
+
                   <AnimatePresence>
                     <motion.div
                       key={activeImageIndex}
@@ -518,11 +533,12 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
                             loop={false}
                             muted
                             playsInline
+                            onLoadedData={() => setIsMediaLoading(false)}
                             onEnded={() => {
                               // After the video completes, let the user see the 2nd media item (index 1 in mediaList)
                               setActiveImageIndex(1);
                             }}
-                            className="w-full h-full object-cover transition-transform duration-500 border-0 outline-none scale-[1.025]"
+                            className="w-full h-full md:object-cover object-contain transition-transform duration-500 border-0 outline-none scale-[1.025]"
                             style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
                           />
 
@@ -533,10 +549,12 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
                           alt={`${product.name} large view`}
                           fill
                           sizes="(max-width: 1024px) 100vw, 60vw"
+                          onLoad={() => setIsMediaLoading(false)}
+                          onError={() => setIsMediaLoading(false)}
                           className={`w-full h-full transition-transform duration-500 ${
                             mediaList[activeImageIndex]?.url.includes('/Images/') || 
                             mediaList[activeImageIndex]?.url.includes('unsplash.com')
-                              ? 'object-cover'
+                              ? 'md:object-cover object-contain'
                               : 'object-contain p-1 md:p-2'
                           }`}
                         />
@@ -551,7 +569,6 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
                     </div>
                   )}
                 </div>
-              </div>
 
               {/* Horizontal list of interactive Thumbnails (Underneath main image) */}
               <div data-lag="0.3" className="flex justify-center gap-3 overflow-x-auto pb-2 scrollbar-none select-none w-full mt-2">
