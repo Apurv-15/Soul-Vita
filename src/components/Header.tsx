@@ -166,7 +166,7 @@ export default function Header({
                 currentScreen === 'inquire' ? 'text-black font-semibold' : 'text-neutral-700 hover:text-black'
               }`}
             >
-              Consult & Contact Us
+              Contact Us
             </button>
 
             {/* Mobile Social Links */}
