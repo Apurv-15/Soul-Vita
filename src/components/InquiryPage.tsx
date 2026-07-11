@@ -16,10 +16,6 @@ interface InquiryPageProps {
   onBackToHome?: () => void;
 }
 
-const COUNTRIES = [
-  'Argentina', 'Chile', 'Colombia', 'Mexico', 'Brazil', 'Peru', 
-  'Ecuador', 'UK', 'USA', 'Canada', 'Australia', 'Other'
-];
 
 const BUSINESS_TYPES = [
   'Distributor / Importer', 'Retailer / Chain Store', 
@@ -38,7 +34,7 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
     jobTitle: '',
     email: '',
     phone: '',
-    country: 'USA',
+    country: '',
     businessType: 'Distributor / Importer',
     message: ''
   });
@@ -57,15 +53,13 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
     city: '',
     state: '',
     zip: '',
-    country: 'USA',
+    country: '',
     notes: '',
     confirmed: false
   });
 
   // Dropdown states
-  const [showTradeCountry, setShowTradeCountry] = useState(false);
   const [showTradeType, setShowTradeType] = useState(false);
-  const [showSampleCountry, setShowSampleCountry] = useState(false);
   const [showSampleType, setShowSampleType] = useState(false);
 
   const handleTradeSubmit = async (e: React.FormEvent) => {
@@ -95,7 +89,7 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
       return;
     }
     setIsSending(true);
-
+ 
     try {
       await addDoc(collection(db, 'inquiries'), {
         type: 'sample',
@@ -119,7 +113,7 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
       jobTitle: '',
       email: '',
       phone: '',
-      country: 'USA',
+      country: '',
       businessType: 'Distributor / Importer',
       message: ''
     });
@@ -136,7 +130,7 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
       city: '',
       state: '',
       zip: '',
-      country: 'USA',
+      country: '',
       notes: '',
       confirmed: false
     });
@@ -280,50 +274,23 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
                           />
                         </div>
 
-                        {/* Country Dropdown */}
-                        <div className="relative md:col-span-1">
-                          <button
-                            type="button"
-                            onClick={() => { setShowTradeCountry(!showTradeCountry); setShowTradeType(false); }}
-                            className="w-full text-left flex justify-between items-center bg-white border border-stone-200 hover:border-neutral-300 rounded-lg px-4 py-3 text-xs font-medium text-neutral-700 cursor-pointer"
-                          >
-                            <span>{tradeForm.country}</span>
-                            <ChevronDown className="w-3.5 h-3.5 text-neutral-400" />
-                          </button>
-                          <AnimatePresence>
-                            {showTradeCountry && (
-                              <>
-                                <div className="fixed inset-0 z-30" onClick={() => setShowTradeCountry(false)} />
-                                <motion.div
-                                  initial={{ opacity: 0, y: 5 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  exit={{ opacity: 0, y: 5 }}
-                                  className="absolute left-0 top-full mt-1 w-full max-h-48 bg-white border border-stone-200 rounded-lg shadow-lg overflow-y-auto z-40 p-1"
-                                >
-                                  {COUNTRIES.map((c) => (
-                                    <button
-                                      key={c}
-                                      type="button"
-                                      onClick={() => {
-                                        setTradeForm({ ...tradeForm, country: c });
-                                        setShowTradeCountry(false);
-                                      }}
-                                      className="w-full text-left font-sans text-xs px-3 py-2 hover:bg-stone-50 rounded text-neutral-750"
-                                    >
-                                      {c}
-                                    </button>
-                                  ))}
-                                </motion.div>
-                              </>
-                            )}
-                          </AnimatePresence>
+                        {/* Country Textbox */}
+                        <div className="md:col-span-1">
+                          <input
+                            type="text"
+                            required
+                            value={tradeForm.country}
+                            onChange={(e) => setTradeForm({ ...tradeForm, country: e.target.value })}
+                            placeholder="Country *"
+                            className="w-full text-xs font-medium text-neutral-800 bg-white border border-stone-200 hover:border-neutral-300 focus:border-[#5EC7B6] focus:ring-1 focus:ring-[#5EC7B6]/20 rounded-lg px-4 py-3 outline-none transition-colors"
+                          />
                         </div>
 
                         {/* Business Type Dropdown */}
                         <div className="relative md:col-span-1">
                           <button
                             type="button"
-                            onClick={() => { setShowTradeType(!showTradeType); setShowTradeCountry(false); }}
+                            onClick={() => { setShowTradeType(!showTradeType); }}
                             className="w-full text-left flex justify-between items-center bg-white border border-stone-200 hover:border-neutral-300 rounded-lg px-4 py-3 text-xs font-medium text-neutral-700 cursor-pointer"
                           >
                             <span className="truncate">{tradeForm.businessType}</span>
@@ -467,7 +434,7 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
                         <div className="relative md:col-span-1">
                           <button
                             type="button"
-                            onClick={() => { setShowSampleType(!showSampleType); setShowSampleCountry(false); }}
+                            onClick={() => { setShowSampleType(!showSampleType); }}
                             className="w-full text-left flex justify-between items-center bg-white border border-stone-200 hover:border-neutral-300 rounded-lg px-4 py-3 text-xs font-medium text-neutral-700 cursor-pointer"
                           >
                             <span className="truncate">{sampleForm.businessType}</span>
@@ -502,43 +469,16 @@ export default function InquiryPage({ onBackToHome }: InquiryPageProps) {
                           </AnimatePresence>
                         </div>
 
-                        {/* Country Dropdown */}
-                        <div className="relative md:col-span-1">
-                          <button
-                            type="button"
-                            onClick={() => { setShowSampleCountry(!showSampleCountry); setShowSampleType(false); }}
-                            className="w-full text-left flex justify-between items-center bg-white border border-stone-200 hover:border-neutral-300 rounded-lg px-4 py-3 text-xs font-medium text-neutral-700 cursor-pointer"
-                          >
-                            <span>{sampleForm.country}</span>
-                            <ChevronDown className="w-3.5 h-3.5 text-neutral-400" />
-                          </button>
-                          <AnimatePresence>
-                            {showSampleCountry && (
-                              <>
-                                <div className="fixed inset-0 z-30" onClick={() => setShowSampleCountry(false)} />
-                                <motion.div
-                                  initial={{ opacity: 0, y: 5 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  exit={{ opacity: 0, y: 5 }}
-                                  className="absolute left-0 top-full mt-1 w-full max-h-48 bg-white border border-stone-200 rounded-lg shadow-lg overflow-y-auto z-40 p-1"
-                                >
-                                  {COUNTRIES.map((c) => (
-                                    <button
-                                      key={c}
-                                      type="button"
-                                      onClick={() => {
-                                        setSampleForm({ ...sampleForm, country: c });
-                                        setShowSampleCountry(false);
-                                      }}
-                                      className="w-full text-left font-sans text-xs px-3 py-2 hover:bg-stone-50 rounded text-neutral-750"
-                                    >
-                                      {c}
-                                    </button>
-                                  ))}
-                                </motion.div>
-                              </>
-                            )}
-                          </AnimatePresence>
+                        {/* Country Textbox */}
+                        <div className="md:col-span-1">
+                          <input
+                            type="text"
+                            required
+                            value={sampleForm.country}
+                            onChange={(e) => setSampleForm({ ...sampleForm, country: e.target.value })}
+                            placeholder="Country *"
+                            className="w-full text-xs font-medium text-neutral-800 bg-white border border-stone-200 hover:border-neutral-300 focus:border-[#5EC7B6] focus:ring-1 focus:ring-[#5EC7B6]/20 rounded-lg px-4 py-3 outline-none transition-colors"
+                          />
                         </div>
                       </div>
 
