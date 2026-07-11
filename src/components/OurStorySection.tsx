@@ -68,7 +68,7 @@ export default function OurStorySection() {
             </div>
             <div className="w-full rounded-2xl overflow-hidden relative shadow-sm aspect-[16/10]">
               <img 
-                src="/About_Us/Sensory Exp.jpeg" 
+                src="/Sensory Exp.png" 
                 alt="Sensory-First Design" 
                 className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
               />

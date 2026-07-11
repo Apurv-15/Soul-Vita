@@ -209,7 +209,7 @@ export default function App() {
         '/About_Us/Fragrance.png',
         '/About_Us/Glucerin.png',
         '/About_Us/Extracts - Diff.png',
-        '/About_Us/Sensory Exp.jpeg',
+        '/Sensory Exp.png',
         '/Factory images/Factory Img1.jpg',
         '/Factory images/Factory Image 2.jpg',
       ].forEach(cacheImage);
