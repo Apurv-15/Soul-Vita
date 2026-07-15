@@ -24,10 +24,19 @@ import {
   Layers,
   ChevronDown,
   CheckCircle,
-  Truck
+  Truck,
+  LogIn,
+  LogOut,
+  Lock
 } from 'lucide-react';
 import { PRODUCTS } from '../data';
-import { db } from '../firebase';
+import { db, auth } from '../firebase';
+import {
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  User
+} from 'firebase/auth';
 import {
   collection,
   onSnapshot,
@@ -75,6 +84,14 @@ interface AdminDashboardProps {
 
 
 export default function AdminDashboard({ onBackToHome }: AdminDashboardProps) {
+  const [user, setUser] = useState<User | null>(null);
+  const [loadingAuth, setLoadingAuth] = useState(true);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [authError, setAuthError] = useState('');
+  const [loadingLogin, setLoadingLogin] = useState(false);
+
+  // Active inquiries state for the actual dashboard
   const [inquiries, setInquiries] = useState<Submission[]>([]);
   const [activeTypeTab, setActiveTypeTab] = useState<'all' | 'trade' | 'sample'>('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -82,8 +99,40 @@ export default function AdminDashboard({ onBackToHome }: AdminDashboardProps) {
   const [filterStatus, setFilterStatus] = useState('all');
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  // Setup real-time listener to Firestore
+  // Rate Limiting & Cooldown Lockout State
+  const [failedAttempts, setFailedAttempts] = useState<number>(0);
+  const [lockoutUntil, setLockoutUntil] = useState<number | null>(null);
+  const [lockoutTimeLeft, setLockoutTimeLeft] = useState<number>(0);
+
+  // Setup authentication state listener
   useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoadingAuth(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  // Cooldown timer tick down
+  useEffect(() => {
+    if (!lockoutUntil) return;
+    const checkLockout = () => {
+      const now = Date.now();
+      if (now >= lockoutUntil) {
+        setLockoutUntil(null);
+        setLockoutTimeLeft(0);
+      } else {
+        setLockoutTimeLeft(Math.ceil((lockoutUntil - now) / 1000));
+      }
+    };
+    checkLockout();
+    const interval = setInterval(checkLockout, 1000);
+    return () => clearInterval(interval);
+  }, [lockoutUntil]);
+
+  // Setup real-time listener to Firestore (only active when logged in)
+  useEffect(() => {
+    if (!user) return;
     const q = query(collection(db, 'inquiries'), orderBy('timestamp', 'desc'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const fetchedInquiries: Submission[] = [];
@@ -99,7 +148,40 @@ export default function AdminDashboard({ onBackToHome }: AdminDashboardProps) {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user]);
+
+  // Handle Auth Login
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (lockoutUntil && Date.now() < lockoutUntil) {
+      return;
+    }
+    setAuthError('');
+    setLoadingLogin(true);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setFailedAttempts(0);
+      setLockoutUntil(null);
+    } catch (err: any) {
+      console.error('Login failed:', err);
+      const newAttempts = failedAttempts + 1;
+      setFailedAttempts(newAttempts);
+      if (newAttempts >= 5) {
+        const cooldown = Date.now() + 60000; // 60-second cooldown
+        setLockoutUntil(cooldown);
+        setFailedAttempts(0);
+        setAuthError('Too many failed login attempts. Input is temporarily locked for 60 seconds.');
+      } else {
+        if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
+          setAuthError(`Incorrect email or password. Attempt ${newAttempts} of 5 before temporary block.`);
+        } else {
+          setAuthError(err.message || 'Failed to authenticate. Please check connection.');
+        }
+      }
+    } finally {
+      setLoadingLogin(false);
+    }
+  };
 
   // Update Status
   const handleUpdateStatus = async (id: string, newStatus: 'pending' | 'reviewed' | 'dispatched') => {
@@ -220,6 +302,112 @@ export default function AdminDashboard({ onBackToHome }: AdminDashboardProps) {
   const reviewedCount = inquiries.filter(i => i.status === 'reviewed').length;
   const dispatchedCount = inquiries.filter(i => i.status === 'dispatched').length;
 
+  if (loadingAuth) {
+    return (
+      <div className="w-full min-h-[70vh] flex flex-col items-center justify-center gap-4 bg-transparent">
+        <div className="w-10 h-10 rounded-full border-[3px] border-stone-250 border-t-[#2D3A2F] animate-spin" />
+        <span className="text-[11px] tracking-[0.25em] uppercase text-[#2D3A2F]/50 font-sans font-semibold">Verifying credentials...</span>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="w-full min-h-[80vh] flex items-center justify-center px-4 py-8 bg-transparent select-text">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full max-w-[520px] bg-white rounded-[32px] p-10 md:p-12 border border-[#E5DEC1]/60 shadow-xl space-y-8 text-left"
+        >
+          <div className="text-center space-y-3.5">
+            <div className="w-16 h-16 bg-[#2D3A2F]/5 text-[#2D3A2F] rounded-[20px] flex items-center justify-center mx-auto border border-[#E5DEC1]/30">
+              <Lock className="w-7 h-7 stroke-[1.8]" />
+            </div>
+            <h2 className="font-display text-[32px] font-normal text-neutral-800 tracking-tight">Admin Authentication</h2>
+            <p className="font-sans text-sm text-neutral-500 font-light leading-relaxed max-w-md mx-auto">
+              Access is restricted to authorized brand administrators of Belleaves Private Limited.
+            </p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-[11px] tracking-widest font-bold uppercase text-neutral-500 block">
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                disabled={loadingLogin || !!lockoutUntil}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@belleaves.com"
+                className="w-full bg-[#FAF9F5] border border-neutral-200/80 rounded-2xl px-5 py-4 text-base font-sans placeholder-neutral-400 text-neutral-800 focus:outline-none focus:border-[#2D3A2F] focus:ring-1 focus:ring-[#2D3A2F]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-[11px] tracking-widest font-bold uppercase text-neutral-500 block">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                required
+                disabled={loadingLogin || !!lockoutUntil}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full bg-[#FAF9F5] border border-neutral-200/80 rounded-2xl px-5 py-4 text-base font-sans placeholder-neutral-400 text-neutral-800 focus:outline-none focus:border-[#2D3A2F] focus:ring-1 focus:ring-[#2D3A2F]/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              />
+            </div>
+
+            {lockoutUntil && (
+              <div className="flex items-start gap-2.5 text-sm text-amber-700 bg-amber-50/50 border border-amber-100 rounded-2xl p-4 leading-relaxed font-sans">
+                <AlertCircle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
+                <span>Temporary login lockout active. Please wait <strong>{lockoutTimeLeft}s</strong>.</span>
+              </div>
+            )}
+
+            {authError && !lockoutUntil && (
+              <div className="flex items-start gap-2.5 text-sm text-red-650 bg-red-50/50 border border-red-100 rounded-2xl p-4 leading-relaxed font-sans">
+                <AlertCircle className="w-4.5 h-4.5 text-red-500 shrink-0 mt-0.5" />
+                <span>{authError}</span>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              disabled={loadingLogin || !!lockoutUntil}
+              className="w-full flex items-center justify-center gap-2.5 bg-[#2D3A2F] hover:bg-[#1E2720] disabled:bg-neutral-300 text-white rounded-2xl py-4 text-sm font-bold tracking-widest uppercase cursor-pointer transition-all duration-300 active:scale-[0.985] shadow-md hover:shadow-lg disabled:cursor-not-allowed"
+            >
+              {loadingLogin ? (
+                <div className="w-5 h-5 rounded-full border-2 border-white/30 border-t-white animate-spin" />
+              ) : (
+                <>
+                  <LogIn className="w-4 h-4" />
+                  Authenticate
+                </>
+              )}
+            </button>
+          </form>
+
+          {onBackToHome && (
+            <button
+              onClick={onBackToHome}
+              className="w-full text-center text-xs font-sans font-bold tracking-widest uppercase text-neutral-500 hover:text-black transition-colors pt-3 block cursor-pointer"
+            >
+              Cancel & Return Home
+            </button>
+          )}
+        </motion.div>
+      </div>
+    );
+  }
+
+
+
   return (
     <div className="w-full max-w-7xl mx-auto px-4 py-12 md:py-16 bg-transparent select-text">
       
@@ -264,6 +452,20 @@ export default function AdminDashboard({ onBackToHome }: AdminDashboardProps) {
               Return
             </button>
           )}
+
+          <button
+            onClick={async () => {
+              try {
+                await signOut(auth);
+              } catch (err) {
+                console.error('Sign out error:', err);
+              }
+            }}
+            className="flex items-center gap-2 font-sans text-xs font-bold tracking-wider uppercase bg-stone-250 hover:bg-stone-300 border border-neutral-300 text-neutral-700 rounded-xl px-5 py-3 cursor-pointer transition-all duration-300 active:scale-97 shadow-xs"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            Sign Out
+          </button>
         </div>
       </div>
 

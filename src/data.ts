@@ -3,11 +3,11 @@ import { Product, BrandCommitment } from './types';
 export const PRODUCTS: Product[] = [
   {
     id: 'mandarin-peach',
-    name: 'Soul Viva Mandarin & Peach Moisturizing Gel Bar',
-    tagline: 'A bathing experience that feels like a burst of citrus energy. Bright, juicy notes awaken your senses, filling the air with vibrant freshness. Lively, uplifting, and radiant. Soul Viva Mandarin & Peach moisturizing gel bar brings that feeling to your shower, leaving your skin energised and fresh.',
+    name: 'Soul Viva Mandarin & Peach Moisturising Gel Bar',
+    tagline: 'A bathing experience that feels like a burst of citrus energy. Bright, juicy notes awaken your senses, filling the air with vibrant freshness. Lively, uplifting, and radiant. Soul Viva Mandarin & Peach moisturising gel bar brings that feeling to your shower, leaving your skin energised and fresh.',
     subtitle: 'For Energised Fresh Skin',
-    description: 'A bathing experience that feels like a burst of citrus energy. Bright, juicy notes awaken your senses, filling the air with vibrant freshness. Lively, uplifting, and radiant. Soul Viva Mandarin & Peach moisturizing gel bar brings that feeling to your shower, leaving your skin energised and fresh.',
-    longDescription: 'A bathing experience that feels like a burst of citrus energy. Bright, juicy notes awaken your senses, filling the air with vibrant freshness. Lively, uplifting, and radiant. Soul Viva Mandarin & Peach moisturizing gel bar brings that feeling to your shower, leaving your skin energised and fresh.',
+    description: 'A bathing experience that feels like a burst of citrus energy. Bright, juicy notes awaken your senses, filling the air with vibrant freshness. Lively, uplifting, and radiant. Soul Viva Mandarin & Peach moisturising gel bar brings that feeling to your shower, leaving your skin energised and fresh.',
+    longDescription: 'A bathing experience that feels like a burst of citrus energy. Bright, juicy notes awaken your senses, filling the air with vibrant freshness. Lively, uplifting, and radiant. Soul Viva Mandarin & Peach moisturising gel bar brings that feeling to your shower, leaving your skin energised and fresh.',
     price: 35,
     weight: '100g when packed',
     pHLevel: '5.5 (Acid Balanced)',
@@ -71,17 +71,17 @@ export const PRODUCTS: Product[] = [
       'Dermatologically Tested',
       'Cruelty Free',
       'Paraben Free',
-      'Silicon Free',
+      'Silicone Free',
       'Suitable for All Skin Types'
     ]
   },
   {
     id: 'waterlily-pear',
-    name: 'Soul Viva Waterlily & Pear Moisturizing Gel Bar',
-    tagline: 'A bathing experience that feels like standing under the fresh water of a tropical waterfall, surrounded by lush greens and soft blooms. Pure, vibrant, and alive. Soul Viva Waterlily & Pear moisturizing gel bar brings that feeling to your shower, leaving your skin dewy and fresh.',
+    name: 'Soul Viva Waterlily & Pear Moisturising Gel Bar',
+    tagline: 'A bathing experience that feels like standing under the fresh water of a tropical waterfall, surrounded by lush greens and soft blooms. Pure, vibrant, and alive. Soul Viva Waterlily & Pear moisturising gel bar brings that feeling to your shower, leaving your skin dewy and fresh.',
     subtitle: 'For Dewy Fresh Skin',
-    description: 'A bathing experience that feels like standing under the fresh water of a tropical waterfall, surrounded by lush greens and soft blooms. Pure, vibrant, and alive. Soul Viva Waterlily & Pear moisturizing gel bar brings that feeling to your shower, leaving your skin dewy and fresh.',
-    longDescription: 'A bathing experience that feels like standing under the fresh water of a tropical waterfall, surrounded by lush greens and soft blooms. Pure, vibrant, and alive. Soul Viva Waterlily & Pear moisturizing gel bar brings that feeling to your shower, leaving your skin dewy and fresh.',
+    description: 'A bathing experience that feels like standing under the fresh water of a tropical waterfall, surrounded by lush greens and soft blooms. Pure, vibrant, and alive. Soul Viva Waterlily & Pear moisturising gel bar brings that feeling to your shower, leaving your skin dewy and fresh.',
+    longDescription: 'A bathing experience that feels like standing under the fresh water of a tropical waterfall, surrounded by lush greens and soft blooms. Pure, vibrant, and alive. Soul Viva Waterlily & Pear moisturising gel bar brings that feeling to your shower, leaving your skin dewy and fresh.',
     price: 35,
     weight: '100g when packed',
     pHLevel: '5.5 (Acid Balanced)',
@@ -145,17 +145,17 @@ export const PRODUCTS: Product[] = [
       'Dermatologically Tested',
       'Cruelty Free',
       'Paraben Free',
-      'Silicon Free',
+      'Silicone Free',
       'Suitable for All Skin Types'
     ]
   },
   {
     id: 'lavender-currant',
     name: 'Soul Viva Black Currant & Lavender Moisturising Gel Bar',
-    tagline: 'A bathing experience that feels like sinking into a calming lavender bath. Soft aromas ease the mind while gentle warmth relaxes the body. Deeply soothing and serene. Soul Viva Black Currant & Lavender moisturizing gel bar brings that feeling to your shower, leaving you calm and comforted.',
+    tagline: 'A bathing experience that feels like sinking into a calming lavender bath. Soft aromas ease the mind while gentle warmth relaxes the body. Deeply soothing and serene. Soul Viva Black Currant & Lavender moisturising gel bar brings that feeling to your shower, leaving you calm and comforted.',
     subtitle: 'For Smooth & Happy Skin',
-    description: 'A bathing experience that feels like sinking into a calming lavender bath. Soft aromas ease the mind while gentle warmth relaxes the body. Deeply soothing and serene. Soul Viva Black Currant & Lavender moisturizing gel bar brings that feeling to your shower, leaving you calm and comforted.',
-    longDescription: 'A bathing experience that feels like sinking into a calming lavender bath. Soft aromas ease the mind while gentle warmth relaxes the body. Deeply soothing and serene. Soul Viva Black Currant & Lavender moisturizing gel bar brings that feeling to your shower, leaving you calm and comforted.',
+    description: 'A bathing experience that feels like sinking into a calming lavender bath. Soft aromas ease the mind while gentle warmth relaxes the body. Deeply soothing and serene. Soul Viva Black Currant & Lavender moisturising gel bar brings that feeling to your shower, leaving you calm and comforted.',
+    longDescription: 'A bathing experience that feels like sinking into a calming lavender bath. Soft aromas ease the mind while gentle warmth relaxes the body. Deeply soothing and serene. Soul Viva Black Currant & Lavender moisturising gel bar brings that feeling to your shower, leaving you calm and comforted.',
     price: 35,
     weight: '100g when packed',
     pHLevel: '5.5 (Skin Balanced)',
@@ -181,7 +181,7 @@ export const PRODUCTS: Product[] = [
     },
     keyIngredients: [
       {
-        name: 'Black Currant Essence',
+        name: 'Black Currant Extract',
         role: 'Lipid Nourisher',
         source: 'Forest Currants',
         description: 'Nourishes for smoother skin with natural extracts of antioxidant-rich black currant',
@@ -219,17 +219,17 @@ export const PRODUCTS: Product[] = [
       'Dermatologically Tested',
       'Cruelty Free',
       'Paraben Free',
-      'Silicon Free',
+      'Silicone Free',
       'Suitable for All Skin Types'
     ]
   },
   {
     id: 'shea-honey',
     name: 'Soul Viva Shea Butter & Honey Moisturising Gel Bar',
-    tagline: 'A bathing experience that feels like a warm cozy hug. Rich, creamy softness that leaves your skin feeling nourished and comforted. Soul Viva Shea Butter & Honey moisturizing gel bar brings that feeling to your shower, leaving your skin deeply nourished and soft.',
+    tagline: 'A bathing experience that feels like a warm cosy hug. Rich, creamy softness that leaves your skin feeling nourished and comforted. Soul Viva Shea Butter & Honey moisturising gel bar brings that feeling to your shower, leaving your skin deeply nourished and soft.',
     subtitle: 'For Deeply Nourished Skin',
-    description: 'A bathing experience that feels like a warm cozy hug. Rich, creamy softness that leaves your skin feeling nourished and comforted. Soul Viva Shea Butter & Honey moisturizing gel bar brings that feeling to your shower, leaving your skin deeply nourished and soft.',
-    longDescription: 'A bathing experience that feels like a warm cozy hug. Rich, creamy softness that leaves your skin feeling nourished and comforted. Soul Viva Shea Butter & Honey moisturizing gel bar brings that feeling to your shower, leaving your skin deeply nourished and soft.',
+    description: 'A bathing experience that feels like a warm cosy hug. Rich, creamy softness that leaves your skin feeling nourished and comforted. Soul Viva Shea Butter & Honey moisturising gel bar brings that feeling to your shower, leaving your skin deeply nourished and soft.',
+    longDescription: 'A bathing experience that feels like a warm cosy hug. Rich, creamy softness that leaves your skin feeling nourished and comforted. Soul Viva Shea Butter & Honey moisturising gel bar brings that feeling to your shower, leaving your skin deeply nourished and soft.',
     price: 35,
     weight: '100g when packed',
     pHLevel: '5.6 (lipid-rich)',
@@ -293,17 +293,17 @@ export const PRODUCTS: Product[] = [
       'Dermatologically Tested',
       'Cruelty Free',
       'Paraben Free',
-      'Silicon Free',
+      'Silicone Free',
       'Suitable for All Skin Types'
     ]
   },
   {
     id: 'cherry-blossom-strawberry',
     name: 'Soul Viva Cherry Blossom & Strawberry Moisturising Gel Bar',
-    tagline: 'A bathing experience that feels like standing beneath blooming cherry blossoms. Petals drifting in the air as a sweet, delicate fragrance surrounds you. Light, tender, and romantic. Soul Viva Cherry Blossom & Strawberry moisturizing gel bar brings that feeling to your shower, leaving your skin soft and glowing.',
+    tagline: 'A bathing experience that feels like standing beneath blooming cherry blossoms. Petals drifting in the air as a sweet, delicate fragrance surrounds you. Light, tender, and romantic. Soul Viva Cherry Blossom & Strawberry moisturising gel bar brings that feeling to your shower, leaving your skin soft and glowing.',
     subtitle: 'For Soft Glowing Skin',
-    description: 'A bathing experience that feels like standing beneath blooming cherry blossoms. Petals drifting in the air as a sweet, delicate fragrance surrounds you. Light, tender, and romantic. Soul Viva Cherry Blossom & Strawberry moisturizing gel bar brings that feeling to your shower, leaving your skin soft and glowing.',
-    longDescription: 'A bathing experience that feels like standing beneath blooming cherry blossoms. Petals drifting in the air as a sweet, delicate fragrance surrounds you. Light, tender, and romantic. Soul Viva Cherry Blossom & Strawberry moisturizing gel bar brings that feeling to your shower, leaving your skin soft and glowing.',
+    description: 'A bathing experience that feels like standing beneath blooming cherry blossoms. Petals drifting in the air as a sweet, delicate fragrance surrounds you. Light, tender, and romantic. Soul Viva Cherry Blossom & Strawberry moisturising gel bar brings that feeling to your shower, leaving your skin soft and glowing.',
+    longDescription: 'A bathing experience that feels like standing beneath blooming cherry blossoms. Petals drifting in the air as a sweet, delicate fragrance surrounds you. Light, tender, and romantic. Soul Viva Cherry Blossom & Strawberry moisturising gel bar brings that feeling to your shower, leaving your skin soft and glowing.',
     price: 35,
     weight: '100g when packed',
     pHLevel: '5.5 (Skin Optimal)',
@@ -332,7 +332,7 @@ export const PRODUCTS: Product[] = [
         name: 'Cherry Blossom Extract',
         role: 'Luminosity Perfector',
         source: 'Sakura Petals',
-        description: "Enhances skin's natural glow with natural extracts of brigntening cherry blossoms",
+        description: "Enhances skin's natural glow with natural extracts of brightening cherry blossoms",
         image: '/Ingredient Story/Ingredient Story - Pink - 1.png'
       },
       {
@@ -367,17 +367,17 @@ export const PRODUCTS: Product[] = [
       'Dermatologically Tested',
       'Cruelty Free',
       'Paraben Free',
-      'Silicon Free',
+      'Silicone Free',
       'Suitable for All Skin Types'
     ]
   },
   {
     id: 'sea-minerals-menthol',
     name: 'Soul Viva Sea Minerals & Menthol Moisturising Gel Bar',
-    tagline: 'A bathing experience that feels like a dip in the ocean — cool, crisp, and alive. Waves wash over you as freshness awakens every sense. Beneath it all, a quiet calm. Soul Viva Sea Minerals & Menthol moisturizing gel bar brings that feeling to your shower, leaving you cool and refreshed.',
+    tagline: 'A bathing experience that feels like a dip in the ocean — cool, crisp, and alive. Waves wash over you as freshness awakens every sense. Beneath it all, a quiet calm. Soul Viva Sea Minerals & Menthol moisturising gel bar brings that feeling to your shower, leaving you cool and refreshed.',
     subtitle: 'For Cool, Refreshed & Purified Skin',
-    description: 'A bathing experience that feels like a dip in the ocean — cool, crisp, and alive. Waves wash over you as freshness awakens every sense. Beneath it all, a quiet calm. Soul Viva Sea Minerals & Menthol moisturizing gel bar brings that feeling to your shower, leaving you cool and refreshed.',
-    longDescription: 'A bathing experience that feels like a dip in the ocean — cool, crisp, and alive. Waves wash over you as freshness awakens every sense. Beneath it all, a quiet calm. Soul Viva Sea Minerals & Menthol moisturizing gel bar brings that feeling to your shower, leaving you cool and refreshed.',
+    description: 'A bathing experience that feels like a dip in the ocean — cool, crisp, and alive. Waves wash over you as freshness awakens every sense. Beneath it all, a quiet calm. Soul Viva Sea Minerals & Menthol moisturising gel bar brings that feeling to your shower, leaving you cool and refreshed.',
+    longDescription: 'A bathing experience that feels like a dip in the ocean — cool, crisp, and alive. Waves wash over you as freshness awakens every sense. Beneath it all, a quiet calm. Soul Viva Sea Minerals & Menthol moisturising gel bar brings that feeling to your shower, leaving you cool and refreshed.',
     price: 35,
     weight: '100g when packed',
     pHLevel: '5.5 (Skin-Identical)',
@@ -441,7 +441,7 @@ export const PRODUCTS: Product[] = [
       'Dermatologically Tested',
       'Cruelty Free',
       'Paraben Free',
-      'Silicon Free',
+      'Silicone Free',
       'Suitable for All Skin Types'
     ]
   }

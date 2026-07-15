@@ -111,14 +111,7 @@ export default function Header({
           >
             Contact Us
           </button>
-          {currentScreen === 'admin' && (
-            <button
-              onClick={() => navigateTo('admin')}
-              className="font-sans text-xs tracking-[0.2em] uppercase transition-all duration-300 pb-1 cursor-pointer border-b-2 text-black border-black font-semibold"
-            >
-              ADMIN
-            </button>
-          )}
+
 
           {/* Social Icons separator and links */}
           <div className="flex items-center gap-4 border-l border-neutral-400/30 pl-6">

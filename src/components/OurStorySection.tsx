@@ -180,7 +180,7 @@ export default function OurStorySection() {
                       INCI Declarations
                     </h4>
                     <p className="font-sans text-[14.5px] text-neutral-700 font-light leading-relaxed">
-                      Full INCI (International Nomenclature Cosmetic Ingredient) ingredient lists have been prepared to international convention — with correct IUPAC nomenclature, Latin binomials for all botanical extracts, and proper descending-concentration order as required by EU and Latin American regulations.
+                      Full INCI (International Nomenclature of Cosmetic Ingredients) ingredient lists have been prepared to international convention — with correct IUPAC nomenclature, Latin binomials for all botanical extracts, and proper descending-concentration order as required by EU and Latin American regulations.
                     </p>
                   </div>
                 </div>
@@ -206,7 +206,7 @@ export default function OurStorySection() {
                       Claims Substantiation
                     </h4>
                     <p className="font-sans text-[14.5px] text-neutral-700 font-light leading-relaxed">
-                      All variants are dermatologically tested for all skin types. All product claims are substantiated: 100% Natural Extracts, Cruelty Free, Paraben Free, Silicon Free. The product is classified as a cosmetic/toiletry for customs and import purposes in all target markets.
+                      All variants are dermatologically tested for all skin types. All product claims are substantiated: 100% Natural Extracts, Cruelty Free, Paraben Free, Silicone Free. The product is classified as a cosmetic/toiletry for customs and import purposes in all target markets.
                     </p>
                   </div>
                 </div>
@@ -216,7 +216,7 @@ export default function OurStorySection() {
                   <div>
                     <h4 className="font-display text-[18px] font-semibold text-[#2D3A2F] tracking-tight leading-tight flex items-center gap-2 mb-2.5">
                       <span className="w-2.5 h-2.5 rounded-full bg-[#2D3A2F] flex-shrink-0" />
-                      Mandatory Labeling
+                      Mandatory Labelling
                     </h4>
                     <p className="font-sans text-[14.5px] text-neutral-700 font-light leading-relaxed">
                       All product labels carry the full set of mandatory information required for international trade: product name and category, net weight (100g), country of origin (India), full ingredient list (INCI), shelf life (24 months), manufacturer name and address, and brand owner address.

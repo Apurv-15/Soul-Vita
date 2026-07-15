@@ -863,7 +863,7 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
                 Soul Viva is a brand of Belleaves Private Limited.
               </p>
               <p className="leading-relaxed font-normal text-neutral-700">
-                Soul Viva is a trademark of Belleaves Pvt. Ltd.
+                Soul Viva is a trademark of Belleaves Private Limited.
               </p>
               <p className="leading-relaxed font-normal text-neutral-700">
                 Manufactured in India. All rights reserved.
@@ -876,7 +876,7 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
 
             {/* Left links */}
             <div className="flex flex-wrap items-center justify-center gap-2">
-              {['Support', 'Admin Portal'].map((link) => (
+              {['Support'].map((link) => (
                 <button
                   key={link}
                   onClick={() => {
@@ -884,12 +884,6 @@ export default function ProductDetailsModal({ product, onClose, onProductSelect,
                       onClose();
                       if (setScreen) {
                         setScreen('inquire');
-                      }
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    } else if (link === 'Admin Portal') {
-                      onClose();
-                      if (setScreen) {
-                        setScreen('admin');
                       }
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }
