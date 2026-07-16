@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import FirebaseAnalytics from '@/src/components/FirebaseAnalytics';
 
 export const metadata: Metadata = {
   title: 'Soul Viva | Transparent Glycerin Bathing Bars',
@@ -13,7 +14,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <FirebaseAnalytics />
+        {children}
+      </body>
     </html>
   );
 }
+

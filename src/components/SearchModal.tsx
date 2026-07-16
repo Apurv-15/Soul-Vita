@@ -80,7 +80,7 @@ export default function SearchModal({ onClose, onSelectProduct }: SearchModalPro
         <div className="flex-1 overflow-y-auto space-y-4">
           {query.trim() === '' ? (
             <div className="space-y-4 py-4">
-              <span className="font-sans text-[10px] tracking-wider text-neutral-400 uppercase font-semibold block">
+              <span className="font-sans text-[10px] tracking-wider text-neutral-400 uppercase font-semibold block mb-2">
                 Recommended Searches
               </span>
               <div className="flex flex-wrap gap-2">

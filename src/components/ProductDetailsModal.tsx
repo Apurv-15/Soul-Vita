@@ -98,51 +98,39 @@ function IngredientCard3D({ name, description, source, image }: IngredientCard3D
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
-      className="relative p-6 rounded-2xl transition-all duration-300 ease-out cursor-pointer h-full bg-white/70 backdrop-blur-md border border-neutral-200/60 shadow-sm hover:shadow-xl hover:border-neutral-400/30 overflow-hidden flex flex-col justify-between"
+      className="bg-white/40 backdrop-blur-md rounded-2xl p-6 border border-neutral-200/50 shadow-sm relative overflow-hidden transition-all duration-300 group hover:shadow-md cursor-pointer h-full"
       style={{
-        perspective: 1000,
         transformStyle: 'preserve-3d',
         transform: isHovered 
-          ? `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.02)` 
-          : 'rotateX(0deg) rotateY(0deg) scale(1)',
+          ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateY(-4px)`
+          : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)',
+        boxShadow: isHovered 
+          ? '0 20px 30px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0,0,0,0.1)'
+          : '0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02)'
       }}
+      onMouseEnter={() => setIsHovered(true)}
     >
-      {/* Gloss overlay reflection */}
-      <div 
-        className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-neutral-100/30 to-white/40 pointer-events-none" 
-        style={{ transform: 'translateZ(10px)' }}
-      />
+      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
       
-      <div className="relative z-10 flex flex-col justify-between h-full w-full" style={{ transform: 'translateZ(30px)' }}>
-        <div className="space-y-3 w-full">
+      {/* 3D Depth elements */}
+      <div 
+        style={{ transform: 'translateZ(30px)' }}
+        className="transition-transform duration-300 flex flex-col h-full justify-between"
+      >
+        <div className="space-y-3">
           {image && (
-            <div className="w-full aspect-[16/10] rounded-xl overflow-hidden relative mb-3 bg-neutral-100 shadow-inner">
-              <img 
-                src={image} 
-                alt={name} 
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-              />
+            <div className="w-12 h-12 rounded-xl bg-white/80 border border-neutral-100/80 p-2 flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform duration-300">
+              <Image src={image} alt={name} width={40} height={40} className="object-contain" />
             </div>
           )}
-          <div className="flex justify-between items-baseline gap-2">
-            <h4 className="font-sans text-base md:text-lg font-bold text-neutral-800 tracking-tight leading-tight">
-              {name}
-            </h4>
-            <span className="font-sans text-[9px] text-neutral-400 uppercase tracking-widest font-semibold px-2 py-0.5 bg-neutral-100/85 rounded border border-neutral-200/30 whitespace-nowrap">
-              {source || 'Bio-compound'}
-            </span>
-          </div>
-          <p className="font-sans text-xs md:text-sm text-neutral-600 font-normal leading-relaxed mt-2">
-            {description}
-          </p>
+          <h4 className="font-sans text-sm font-semibold text-neutral-800">{name}</h4>
+          <p className="font-sans text-[11px] text-neutral-500 leading-relaxed font-light">{description}</p>
         </div>
         
-        <div className="flex justify-between items-center mt-6 pt-4 border-t border-neutral-100">
-          <span className="text-[10px] text-neutral-400 font-semibold tracking-wider uppercase">Active Botanical</span>
-          <div className={`w-2 h-2 rounded-full transition-transform duration-500 bg-neutral-400 ${isHovered ? 'scale-125 bg-black' : ''}`} />
-        </div>
+        <span className="font-sans text-[9px] tracking-wider text-neutral-400 uppercase font-semibold block mt-4 self-start">
+          Source: {source}
+        </span>
       </div>
     </div>
   );

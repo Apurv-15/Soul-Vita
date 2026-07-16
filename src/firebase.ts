@@ -1,6 +1,7 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { getAnalytics, isSupported, logEvent } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDpEem7uPglcAxouQBUiziUTdVMW8TiEis",
@@ -16,4 +17,29 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+// Safe Analytics init for SSR environments
+let analyticsInstance: any = null;
+
+if (typeof window !== "undefined") {
+  isSupported().then((supported) => {
+    if (supported) {
+      analyticsInstance = getAnalytics(app);
+    }
+  });
+}
+
+/**
+ * Log a custom event to Firebase/Google Analytics
+ */
+export const logAnalyticsEvent = (eventName: string, eventParams?: Record<string, any>) => {
+  if (analyticsInstance) {
+    try {
+      logEvent(analyticsInstance, eventName, eventParams);
+    } catch (error) {
+      console.warn("Failed to log analytics event:", error);
+    }
+  }
+};
+
 export { app, db, auth };
+
