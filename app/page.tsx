@@ -681,11 +681,11 @@ export default function App() {
 
                     {/* Left links (Capsules matching image) */}
                     <div className="flex flex-wrap items-center justify-center gap-2">
-                      {['Support'].map((link) => (
+                      {['Contact Us'].map((link) => (
                         <button
                           key={link}
                           onClick={() => {
-                            if (link === 'Support') {
+                            if (link === 'Contact Us') {
                               window.location.hash = 'inquire';
                               window.scrollTo({ top: 0, behavior: 'smooth' });
                             }
