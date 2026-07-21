@@ -364,8 +364,15 @@ export default function App() {
         window.location.hash = `product-${selectedProduct.id}`;
       }
     } else {
-      if (window.location.hash !== `#${currentScreen}`) {
-        window.location.hash = currentScreen;
+      const targetHash = currentScreen === 'home' ? '' : `#${currentScreen}`;
+      if (window.location.hash !== targetHash) {
+        if (currentScreen === 'home') {
+          history.pushState(null, '', window.location.pathname);
+          // Manually trigger page view when navigating back to home without hash change event
+          window.dispatchEvent(new Event('hashchange'));
+        } else {
+          window.location.hash = currentScreen;
+        }
       }
     }
   }, [currentScreen, selectedProduct, loading]);

@@ -21,18 +21,27 @@ export default function FirebaseAnalytics() {
         pagePath = "/home";
       }
 
-      // Determine a friendly page title
-      let pageTitle = document.title;
+      let pageTitle = "Soul Viva | Transparent Glycerin Bathing Bars";
       if (hash) {
         if (hash === "range") pageTitle = "Soul Viva | Product Catalog";
         else if (hash === "story") pageTitle = "Soul Viva | About Us";
         else if (hash === "inquire") pageTitle = "Soul Viva | Contact Us / Inquiry";
-        else if (hash.startsWith("product-")) pageTitle = "Soul Viva | Product Details";
+        else if (hash.startsWith("product-")) {
+          const prodSlug = hash.replace("product-", "").replace(/-/g, " ");
+          const formattedProd = prodSlug.charAt(0).toUpperCase() + prodSlug.slice(1);
+          pageTitle = `Soul Viva | Product - ${formattedProd}`;
+        }
+      } else {
+        pageTitle = "Soul Viva | Home";
       }
+
+      // Update browser document title so standard GA auto-collection catches distinct titles
+      document.title = pageTitle;
 
       logAnalyticsEvent("page_view", {
         page_path: pagePath,
         page_title: pageTitle,
+        page_location: window.location.href
       });
     };
 

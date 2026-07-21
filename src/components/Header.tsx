@@ -48,6 +48,7 @@ export default function Header({
   ] as const;
 
   const navigateTo = (screen: 'home' | 'range' | 'craft' | 'story' | 'inquire' | 'admin' | 'craft') => {
+    window.location.hash = screen === 'home' ? '' : screen;
     setScreen(screen);
     setMobileMenuOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
