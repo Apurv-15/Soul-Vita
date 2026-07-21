@@ -19,11 +19,23 @@ const auth = getAuth(app);
 
 // Safe Analytics init for SSR environments
 let analyticsInstance: any = null;
+const pendingEvents: Array<{ eventName: string; eventParams?: Record<string, any> }> = [];
 
 if (typeof window !== "undefined") {
   isSupported().then((supported) => {
     if (supported) {
       analyticsInstance = getAnalytics(app);
+      // Process any events that were queued before initialization
+      while (pendingEvents.length > 0) {
+        const ev = pendingEvents.shift();
+        if (ev) {
+          try {
+            logEvent(analyticsInstance, ev.eventName, ev.eventParams);
+          } catch (error) {
+            console.warn("Failed to log queued analytics event:", error);
+          }
+        }
+      }
     }
   });
 }
@@ -38,6 +50,9 @@ export const logAnalyticsEvent = (eventName: string, eventParams?: Record<string
     } catch (error) {
       console.warn("Failed to log analytics event:", error);
     }
+  } else {
+    // Queue the event if analytics is not yet initialized
+    pendingEvents.push({ eventName, eventParams });
   }
 };
 
