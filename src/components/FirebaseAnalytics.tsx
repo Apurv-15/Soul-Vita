@@ -27,8 +27,11 @@ export default function FirebaseAnalytics() {
         else if (hash === "story") pageTitle = "Soul Viva | About Us";
         else if (hash === "inquire") pageTitle = "Soul Viva | Contact Us / Inquiry";
         else if (hash.startsWith("product-")) {
-          const prodSlug = hash.replace("product-", "").replace(/-/g, " ");
-          const formattedProd = prodSlug.charAt(0).toUpperCase() + prodSlug.slice(1);
+          const formattedProd = hash
+            .replace("product-", "")
+            .split("-")
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(" ");
           pageTitle = `Soul Viva | Product - ${formattedProd}`;
         }
       } else {
